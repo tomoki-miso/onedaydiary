@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "356300846998",
+    "project_id": "diaryapp-f7fb1",
+    "storage_bucket": "diaryapp-f7fb1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:356300846998:android:43765ee4fceb16018fcfb7",
+        "android_client_info": {
+          "package_name": "com.example.onedaydiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "356300846998-g7sqgvqpeobgr11la40johfaoa5g7gm2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgBRl8steLip8XvYVtuUsCP7LAm4_l4Qc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "356300846998-g7sqgvqpeobgr11la40johfaoa5g7gm2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "356300846998-nl156brd2b068055nut4i3u5rn451ju6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.onedaydiary"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

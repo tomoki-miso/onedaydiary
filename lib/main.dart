@@ -42,10 +42,11 @@ class MyStatefulWidget extends StatefulWidget {
 }
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  static const _screens = [
-    ContentPage(),
-    PostPage(),
-    ProfilePage(),
+  static final _screens = [
+    const ContentPage(),
+    const PostPage(),
+    const ProfilePage(),
+    SignUpPage(),
   ];
 
   int _selectedIndex = 1;
@@ -66,6 +67,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'タイムライン'),
           BottomNavigationBarItem(icon: Icon(Icons.add_circle_outline), label: '作成'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
         ],
         type: BottomNavigationBarType.fixed,

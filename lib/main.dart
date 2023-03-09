@@ -4,6 +4,7 @@ import 'firebase_options.dart';
 import 'content.dart';
 import 'post.dart';
 import 'signup.dart';
+import 'signup_completed.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'profile.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/post': (context) => PostPage(),
         '/content': (context) => ContentPage(),
+        '/completed':(context) => SignUpCompletedPage()
       },
     );
   }

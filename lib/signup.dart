@@ -57,6 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         .user;
                     if (user != null)
                       print("ユーザ登録しました ${user.email} , ${user.uid}");
+                       Navigator.pushNamed(context, '/completed');
                   } catch (e) {
                     print(e);
                   }
@@ -73,7 +74,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                 email: _email, password: _password))
                         .user;
                     if (user != null)
-                      print("ログインしました　${user.email} , ${user.uid}");
+                      print("ログインしました ${user.email} , ${user.uid}");
+                      Navigator.pushNamed(context, '/post');
                   } catch (e) {
                     print(e);
                   }

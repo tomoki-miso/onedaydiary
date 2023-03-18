@@ -1,29 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'firebase_options.dart';
 import 'content.dart';
 import 'post.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class SignInPage extends StatefulWidget {
+  const SignInPage({Key? key}) : super(key: key);
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _SignInPageState createState() => _SignInPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _SignInPageState extends State<SignInPage> {
   String _email = '';
   String _password = '';
-  String _displayName = '';
-
-  final googleLogin = GoogleSignIn(
-    scopes: [
-      'email',
-      'https://www.googleapis.com/auth/contacts.readonly',
-    ],
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -53,20 +44,31 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('ユーザ登録'),
+                child: const Text('ログイン'),
                 onPressed: () async {
                   try {
                     final UserCredential userCredential =
-                        await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
+                        await FirebaseAuth.instance.signInWithEmailAndPassword(
                       email: _email,
                       password: _password,
                     );
                     final User? user = userCredential.user;
                     if (user != null) {
-                      print("ユーザ登録しました ${user.email} , ${user.uid}");
+                      print("登録しました ${user.email} , ${user.uid}");
+                      Navigator.pushNamed(context, '/post');
                     }
-                    Navigator.pushNamed(context, '/completed');
+                  } catch (e) {
+                    print(e);
+                  }
+                },
+              ),
+              ElevatedButton(
+                child: const Text('パスワードリセット'),
+                onPressed: () async {
+                  try {
+                    await FirebaseAuth.instance
+                        .sendPasswordResetEmail(email: _email);
+                    print("パスワードリセット用のメールを送信しました");
                   } catch (e) {
                     print(e);
                   }

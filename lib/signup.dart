@@ -7,7 +7,10 @@ import 'content.dart';
 import 'post.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+   
+  final String _uid;
+
+  SignUpPage({required String uid}) : _uid = uid;
 
   @override
   _SignUpPageState createState() => _SignUpPageState();

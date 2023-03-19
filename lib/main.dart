@@ -6,6 +6,7 @@ import 'content.dart';
 import 'post.dart';
 import 'signup.dart';
 import 'signup_completed.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'profile.dart';
 import 'signup.dart';
@@ -16,7 +17,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +35,8 @@ class MyApp extends StatelessWidget {
         '/post': (context) => PostPage(),
         '/content': (context) => ContentPage(),
         '/completed': (context) => SignUpCompletedPage(),
-        '/signup': (context) => const SignUpPage(),
+        '/beforesignup': (context) => BeforeSignUpPage(),
+        '/signup': (context) => SignUpPage(uid: 'example_uid'),
         '/signin': (context) => const SignInPage(),
       },
     );
@@ -50,7 +52,7 @@ class MyStatefulWidget extends StatefulWidget {
 
 class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static final _screens = [
-    const ContentPage(),
+    ContentPage(),
     const PostPage(),
     const ProfilePage(),
   ];
@@ -66,8 +68,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BeforeSignUpPage(),
+      body: _screens[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: false,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[

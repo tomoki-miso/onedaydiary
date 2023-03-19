@@ -6,6 +6,7 @@ class BeforeSignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: null,
       appBar: AppBar(
         title: Text("ログインまたは新規登録"),
       ),

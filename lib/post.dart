@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'before_signup.dart';
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
 
@@ -20,7 +22,12 @@ class _PostPageState extends State<PostPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+       return BeforeSignUpPage();
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text("投稿画面"),

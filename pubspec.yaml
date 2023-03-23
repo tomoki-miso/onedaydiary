@@ -24,7 +24,7 @@ dependencies:
   
 
 flutter_native_splash:
-  color: "4DD0E1"
-  image: assets/google.png
+  color: "ff9933"
+  image: assets/icon.png
 flutter:
   uses-material-design: true

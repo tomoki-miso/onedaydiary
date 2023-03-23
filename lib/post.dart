@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'before_signup.dart';
+
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
 
@@ -12,21 +13,19 @@ class PostPage extends StatefulWidget {
 
 class _PostPageState extends State<PostPage> {
   late TextEditingController _textEditingController;
-  late String _emotion;
 
   @override
-  void initState() {
+    void initState() {
     super.initState();
     _textEditingController = TextEditingController();
-    _emotion = 'うれしい';
   }
 
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user == null) {
-       return BeforeSignUpPage();
+      return BeforeSignUpPage();
     }
     return Scaffold(
       appBar: AppBar(
@@ -44,40 +43,6 @@ class _PostPageState extends State<PostPage> {
               width: double.infinity,
               height: 100,
             ),
-            DropdownButton(
-              items: const [
-                DropdownMenuItem(
-                  value: 'うれしい',
-                  child: Text('うれしい'),
-                ),
-                DropdownMenuItem(
-                  value: 'かなしい',
-                  child: Text('かなしい'),
-                ),
-                DropdownMenuItem(
-                  value: 'たのしい',
-                  child: Text('たのしい'),
-                ),
-                DropdownMenuItem(
-                  value: 'おどろき',
-                  child: Text('おどろき'),
-                ),
-                DropdownMenuItem(
-                  value: 'なつかしい',
-                  child: Text('なつかしい'),
-                ),
-                DropdownMenuItem(
-                  value: 'そのほか',
-                  child: Text('そのほか'),
-                ),
-              ],
-              value: _emotion,
-              onChanged: (String? value) {
-                setState(() {
-                  _emotion = value!;
-                });
-              },
-            ),
             SizedBox(
               width: double.infinity,
               child: TextFormField(
@@ -92,7 +57,7 @@ class _PostPageState extends State<PostPage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  _onFieldSubmitted();
+                  _onFieldSubmitted(user);
                   Navigator.pushNamed(context, '/content');
                 },
                 child: const Text("投稿")),
@@ -100,23 +65,21 @@ class _PostPageState extends State<PostPage> {
         ),
       ),
     );
+    ;
   }
 
-  void _onFieldSubmitted() {
+  void _onFieldSubmitted(User user) {
     final content = _textEditingController.text.trim();
     if (content.isEmpty) {
       return;
     }
-    CollectionReference posts = FirebaseFirestore.instance.collection('posts');
-    posts.add({
+    CollectionReference userPosts = FirebaseFirestore.instance
+        .collection('user')
+        .doc(user.uid)
+        .collection('userPosts');
+    userPosts.add({
       "content": content,
-      "emotion": _emotion,
       "createdAt": FieldValue.serverTimestamp(),
-    });
-
-    _textEditingController.clear();
-    setState(() {
-      _emotion = 'うれしい';
     });
   }
 }

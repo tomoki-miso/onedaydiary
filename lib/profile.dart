@@ -26,7 +26,7 @@ class ProfilePage extends StatelessWidget {
       ),
       body: StreamBuilder<QuerySnapshot>(
   stream: FirebaseFirestore.instance
-      .collection("users")
+      .collection("user")
      .doc(currentUser.uid)
       .collection("userPosts")
       .orderBy('createdAt', descending: true)
@@ -40,7 +40,6 @@ class ProfilePage extends StatelessWidget {
         Map<String, dynamic>? data =
             snapshot.data!.docs[index].data() as Map<String, dynamic>?;
         if (data == null ||
-            !data.containsKey('emotion') ||
             !data.containsKey('content')) {
           return SizedBox.shrink();
         }
@@ -48,7 +47,6 @@ class ProfilePage extends StatelessWidget {
           color: Color.fromARGB(255, 146, 195, 235),
           child: Column(
             children: [
-              Text(data['emotion']),
               Text(data['content']),
             ],
           ),

@@ -81,5 +81,11 @@ class _PostPageState extends State<PostPage> {
       "content": content,
       "createdAt": FieldValue.serverTimestamp(),
     });
+    CollectionReference posts = FirebaseFirestore.instance.collection('posts');
+    posts.add({
+      "content": content,
+      "createdAt": FieldValue.serverTimestamp(),
+      "userId": user.uid,
+    });
   }
 }

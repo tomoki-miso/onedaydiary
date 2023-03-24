@@ -31,15 +31,12 @@ void main() async {
 
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(MyApp(homeScreen: homeScreen));
+  runApp(MyApp());
   FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
-  final Widget homeScreen;
-
-  const MyApp({Key? key, required this.homeScreen}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     MaterialColor customColor = MaterialColor(
@@ -63,7 +60,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: customColor,
       ),
-      home: homeScreen,
+      home: MyStatefulWidget(),
       routes: {
         '/post': (context) => PostPage(),
         '/content': (context) => ContentPage(),

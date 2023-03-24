@@ -20,11 +20,17 @@ dependencies:
   flutter_native_splash: ^2.2.19
   firebase_auth: ^4.2.10
   google_sign_in: ^6.0.2
-  
-  
+  flutter_overboard: ^3.1.1
+  shared_preferences: ^2.0.20
 
-flutter_native_splash:
-  color: "fff176"
-  image: assets/icon.png
 flutter:
   uses-material-design: true
+
+  assets:
+  - assets/icon.png
+  - assets/icon_big.png
+  - assets/background.png
+
+flutter_native_splash:
+  color: "ffe26b"
+  image: assets/icon.png

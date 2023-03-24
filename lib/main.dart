@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:test_flutter/before_signup.dart';
+import 'package:test_flutter/demo.dart';
 import 'firebase_options.dart';
 import 'content.dart';
 import 'post.dart';
@@ -11,20 +12,33 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'profile.dart';
 import 'signup.dart';
 import 'signin.dart';
+import 'demo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
-  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+
+  // 初回起動時のみデモページを開く
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+  Widget homeScreen = isFirstTime ? const DemoPage() : const MyStatefulWidget();
+  if (isFirstTime) {
+    await prefs.setBool('isFirstTime', false);
+  }
+
+  final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  runApp(MyApp(homeScreen: homeScreen));
   FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final Widget homeScreen;
+
+  const MyApp({Key? key, required this.homeScreen}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +47,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyStatefulWidget(),
+      home: homeScreen,
       routes: {
         '/post': (context) => PostPage(),
         '/content': (context) => ContentPage(),

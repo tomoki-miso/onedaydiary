@@ -28,7 +28,7 @@ class _PostPageState extends State<PostPage> {
       return BeforeSignUpPage();
     }
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 241, 118),
+      backgroundColor: const Color.fromARGB(255, 255, 226, 107),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,

@@ -7,7 +7,7 @@ class SignUpCompletedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 241, 118),
+        backgroundColor: Color.fromARGB(255, 255, 226, 107),
         title: Text("登録完了画面",
             style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
       ),
@@ -18,7 +18,7 @@ class SignUpCompletedPage extends StatelessWidget {
           ElevatedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
-                const Color.fromARGB(255, 255, 241, 118),
+                const Color.fromARGB(255, 255, 226, 107),
               ),
             ),
             onPressed: () {

@@ -28,10 +28,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MaterialColor customColor = MaterialColor(
+      0xFFFFE26B,
+      <int, Color>{
+        50: Color(0xFFFFE26B),
+        100: Color(0xFFFFE26B),
+        200: Color(0xFFFFE26B),
+        300: Color(0xFFFFE26B),
+        400: Color(0xFFFFE26B),
+        500: Color(0xFFFFE26B),
+        600: Color(0xFFFFE26B),
+        700: Color(0xFFFFE26B),
+        800: Color(0xFFFFE26B),
+        900: Color(0xFFFFE26B),
+      },
+    );
+    //色指定
     return MaterialApp(
       title: 'My App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: customColor,
       ),
       home: const MyStatefulWidget(),
       routes: {

@@ -58,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    const Color.fromARGB(255, 255, 241, 118),
+                    const Color.fromARGB(255, 255, 226, 107),
                   ),
                 ),
                 child: const Text('ユーザ登録',

@@ -20,7 +20,7 @@ class ProfilePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 241, 118),
+        backgroundColor: Color.fromARGB(255, 255, 226, 107),
         title: Text("MYTL",
             style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
       ),

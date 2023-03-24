@@ -12,7 +12,7 @@ class BeforeSignUpPage extends StatelessWidget {
             "ログインまたは新規登録",
             style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
           ),
-          backgroundColor: const Color.fromARGB(255, 255, 241, 118)),
+          backgroundColor: const Color.fromARGB(255, 255, 226, 107)),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -20,7 +20,7 @@ class BeforeSignUpPage extends StatelessWidget {
             ElevatedButton(
               style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
-                  const Color.fromARGB(255, 255, 241, 118),
+                  const Color.fromARGB(255, 255, 226, 107),
                 ),
               ),
               onPressed: () {
@@ -34,7 +34,7 @@ class BeforeSignUpPage extends StatelessWidget {
             ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    const Color.fromARGB(255, 255, 241, 118),
+                    const Color.fromARGB(255, 255, 226, 107),
                   ),
                 ),
                 onPressed: () {

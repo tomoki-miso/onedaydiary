@@ -19,7 +19,10 @@ class ContentPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 241, 118),
+      backgroundColor: const Color.fromARGB(255, 255, 226, 107),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 255, 226, 107),
+      ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
             .collection("posts")
@@ -37,6 +40,10 @@ class ContentPage extends StatelessWidget {
                 return SizedBox.shrink();
               }
               return Container(
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
+                //できれば％で指定したい
+                padding: const EdgeInsets.only(top: 15, bottom: 15),
                 color: Color.fromARGB(255, 255, 255, 255),
                 child: Column(
                   children: [

@@ -45,7 +45,7 @@ class _SignInPageState extends State<SignInPage> {
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    const Color.fromARGB(255, 255, 241, 118),
+                    const Color.fromARGB(255, 255, 226, 107),
                   ),
                 ),
                 child: const Text('ログイン',
@@ -70,7 +70,7 @@ class _SignInPageState extends State<SignInPage> {
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
-                    const Color.fromARGB(255, 255, 241, 118),
+                    const Color.fromARGB(255, 255, 226, 107),
                   ),
                 ),
                 child: const Text('パスワードリセット',

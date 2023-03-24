@@ -15,7 +15,7 @@ class _PostPageState extends State<PostPage> {
   late TextEditingController _textEditingController;
 
   @override
-    void initState() {
+  void initState() {
     super.initState();
     _textEditingController = TextEditingController();
   }
@@ -28,27 +28,30 @@ class _PostPageState extends State<PostPage> {
       return BeforeSignUpPage();
     }
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("投稿画面"),
-      ),
+      backgroundColor: const Color.fromARGB(255, 255, 241, 118),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             const Text(
-              "今日しか覚えてないことを書いてみよう！",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+              "今日しか覚えてなさそうなこと",
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                  color: Color.fromARGB(255, 40, 40, 40)),
             ),
             const SizedBox(
               width: double.infinity,
-              height: 100,
+              height: 50,
             ),
             SizedBox(
-              width: double.infinity,
+              width: 400,
               child: TextFormField(
                 controller: _textEditingController,
                 maxLength: 140,
                 decoration: const InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
                   border: OutlineInputBorder(),
                   hintText:
                       '散歩してる人が赤信号の時に動き始めて大丈夫かな…と思ってたらはじめの一歩の時に青信号に変わった、奇跡の瞬間だった',
@@ -56,16 +59,24 @@ class _PostPageState extends State<PostPage> {
               ),
             ),
             ElevatedButton(
-                onPressed: () {
-                  _onFieldSubmitted(user);
-                  Navigator.pushNamed(context, '/content');
-                },
-                child: const Text("投稿")),
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                  const Color.fromARGB(255, 255, 251, 215),
+                ),
+              ),
+              onPressed: () {
+                _onFieldSubmitted(user);
+                Navigator.pushNamed(context, '/content');
+              },
+              child: const Text(
+                "投稿",
+                style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
+              ),
+            ),
           ],
         ),
       ),
     );
-    ;
   }
 
   void _onFieldSubmitted(User user) {

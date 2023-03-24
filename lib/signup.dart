@@ -7,7 +7,6 @@ import 'content.dart';
 import 'post.dart';
 
 class SignUpPage extends StatefulWidget {
-   
   final String _uid;
 
   SignUpPage({required String uid}) : _uid = uid;
@@ -30,7 +29,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    BottomNavigationBar: null;
+    BottomNavigationBar:
+    null;
     return Scaffold(
       body: Center(
         child: Container(
@@ -56,12 +56,18 @@ class _SignUpPageState extends State<SignUpPage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('ユーザ登録'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 255, 241, 118),
+                  ),
+                ),
+                child: const Text('ユーザ登録',
+                    style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
                 onPressed: () async {
                   try {
-                    final UserCredential userCredential =
-                        await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
+                    final UserCredential userCredential = await FirebaseAuth
+                        .instance
+                        .createUserWithEmailAndPassword(
                       email: _email,
                       password: _password,
                     );

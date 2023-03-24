@@ -8,57 +8,52 @@ import 'main.dart';
 import 'signup.dart';
 
 class ContentPage extends StatelessWidget {
-  
   const ContentPage({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
-     final currentUser = FirebaseAuth.instance.currentUser;
+    final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser == null) {
       // ログインしていない場合はログイン画面に遷移
       return BeforeSignUpPage();
     }
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("TL"),
-      ),
+      backgroundColor: const Color.fromARGB(255, 255, 241, 118),
       body: StreamBuilder<QuerySnapshot>(
-  stream: FirebaseFirestore.instance
-      
-      .collection("posts")
-      .orderBy('createdAt', descending: true)
-      .snapshots(),
-  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
-      return Center(child: CircularProgressIndicator());
-    }
-    return ListView.separated(
-      itemBuilder: (BuildContext context, int index) {
-        Map<String, dynamic>? data =
-            snapshot.data!.docs[index].data() as Map<String, dynamic>?;
-        if (data == null ||
-            !data.containsKey('content')) {
-          return SizedBox.shrink();
-        }
-        return Container(
-          color: Color.fromARGB(255, 146, 195, 235),
-          child: Column(
-            children: [
-              Text(data['content']),
-            ],
-          ),
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return const Divider();
-      },
-      itemCount: snapshot.data!.docs.length,
-    );
-  },
-),
+        stream: FirebaseFirestore.instance
+            .collection("posts")
+            .orderBy('createdAt', descending: true)
+            .snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          return ListView.separated(
+            itemBuilder: (BuildContext context, int index) {
+              Map<String, dynamic>? data =
+                  snapshot.data!.docs[index].data() as Map<String, dynamic>?;
+              if (data == null || !data.containsKey('content')) {
+                return SizedBox.shrink();
+              }
+              return Container(
+                color: Color.fromARGB(255, 255, 255, 255),
+                child: Column(
+                  children: [
+                    Text(data['content']),
+                  ],
+                ),
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return const Divider();
+            },
+            itemCount: snapshot.data!.docs.length,
+          );
+        },
+      ),
     );
   }
 }
+
 final uid = FirebaseAuth.instance.currentUser!.uid;

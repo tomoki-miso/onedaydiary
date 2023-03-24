@@ -18,7 +18,6 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Center(
         child: Container(
@@ -44,7 +43,13 @@ class _SignInPageState extends State<SignInPage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('ログイン'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 255, 241, 118),
+                  ),
+                ),
+                child: const Text('ログイン',
+                    style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
                 onPressed: () async {
                   try {
                     final UserCredential userCredential =
@@ -63,7 +68,13 @@ class _SignInPageState extends State<SignInPage> {
                 },
               ),
               ElevatedButton(
-                child: const Text('パスワードリセット'),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 255, 241, 118),
+                  ),
+                ),
+                child: const Text('パスワードリセット',
+                    style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
                 onPressed: () async {
                   try {
                     await FirebaseAuth.instance

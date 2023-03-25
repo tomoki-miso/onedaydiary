@@ -6,6 +6,7 @@ import 'package:test_flutter/before_signup.dart';
 import 'firebase_options.dart';
 import 'main.dart';
 import 'signup.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -24,39 +25,78 @@ class ProfilePage extends StatelessWidget {
         title: Text("MYTL",
             style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance
-            .collection("user")
-            .doc(currentUser.uid)
-            .collection("userPosts")
-            .orderBy('createdAt', descending: true)
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          }
-          return ListView.separated(
-            itemBuilder: (BuildContext context, int index) {
-              Map<String, dynamic>? data =
-                  snapshot.data!.docs[index].data() as Map<String, dynamic>?;
-              if (data == null || !data.containsKey('content')) {
-                return SizedBox.shrink();
-              }
-              return Container(
-                color: Color.fromARGB(255, 146, 195, 235),
-                child: Column(
-                  children: [
-                    Text(data['content']),
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const Divider();
-            },
-            itemCount: snapshot.data!.docs.length,
-          );
-        },
+      body: Column(
+        children: [
+          Container(
+            height: 200,
+            width: 400,
+            child: LineChart(
+              LineChartData(
+                lineTouchData: LineTouchData(enabled: false),
+                lineBarsData: [
+                  LineChartBarData(
+                    spots: [
+                   FlSpot(0, 100),
+                      FlSpot(1, 1000),
+                      FlSpot(2, 3000),
+                      FlSpot(3, 500),
+                      FlSpot(4, 400),
+                      FlSpot(5, 2500),
+                      FlSpot(6,10000),
+                      FlSpot(7, 2909),
+                      FlSpot(8, 376),
+                      FlSpot(9, 290),
+                      FlSpot(10, 6666),
+                    ],
+                    isCurved: true,
+                    barWidth: 2,
+                    color: Colors.blue
+                  ),
+                ],
+               
+                
+               
+              ),
+            ),
+          ),
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection("user")
+                  .doc(currentUser.uid)
+                  .collection("userPosts")
+                  .orderBy('createdAt', descending: true)
+                  .snapshots(),
+              builder:
+                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                return ListView.separated(
+                  itemBuilder: (BuildContext context, int index) {
+                    Map<String, dynamic>? data =
+                        snapshot.data!.docs[index].data() as Map<String, dynamic>?;
+                    if (data == null || !data.containsKey('content')) {
+                      return SizedBox.shrink();
+                    }
+                    return Container(
+                      color: Color.fromARGB(255, 146, 195, 235),
+                      child: Column(
+                        children: [
+                          Text(data['content']),
+                        ],
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const Divider();
+                  },
+                  itemCount: snapshot.data!.docs.length,
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

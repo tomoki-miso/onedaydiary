@@ -22,6 +22,7 @@ dependencies:
   google_sign_in: ^6.0.2
   flutter_overboard: ^3.1.1
   shared_preferences: ^2.0.20
+  fl_chart: ^0.61.0
 
 flutter:
   uses-material-design: true

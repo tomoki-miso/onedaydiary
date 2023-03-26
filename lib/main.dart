@@ -106,9 +106,9 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'タイムライン'),
+          BottomNavigationBarItem(icon: Icon(Icons.article), label: 'タイムライン'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline), label: '作成'),
+              icon: Icon(Icons.edit), label: '作成'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'アカウント'),
         ],
         type: BottomNavigationBarType.fixed,

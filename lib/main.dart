@@ -36,9 +36,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
+    //色指定
     MaterialColor customColor = MaterialColor(
       0xFFFFE26B,
       <int, Color>{
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
         900: Color(0xFFFFE26B),
       },
     );
-    //色指定
+
     return MaterialApp(
       title: 'My App',
       theme: ThemeData(

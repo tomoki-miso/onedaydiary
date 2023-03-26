@@ -21,7 +21,8 @@ class ContentPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 226, 107),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 255, 226, 107),
+        title: Text("タイムライン",
+            style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -43,7 +44,8 @@ class ContentPage extends StatelessWidget {
                 margin:
                     const EdgeInsets.symmetric(horizontal: 10.0, vertical: 3.0),
                 //できれば％で指定したい
-                padding: const EdgeInsets.only(top: 15, bottom: 15),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20.0, vertical: 15.0),
                 color: Color.fromARGB(255, 255, 255, 255),
                 child: Column(
                   children: [

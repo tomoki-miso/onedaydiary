@@ -20,14 +20,16 @@ class ProfilePage extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 226, 107),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 226, 107),
-        title: Text("MYTL",
+        title: Text("アカウントと記録",
             style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
       ),
       body: Column(
         children: [
           Container(
+            margin: const EdgeInsets.only(top: 15, bottom: 15),
+            color: Colors.white,
             height: 200,
             width: 400,
             child: LineChart(
@@ -35,27 +37,23 @@ class ProfilePage extends StatelessWidget {
                 lineTouchData: LineTouchData(enabled: false),
                 lineBarsData: [
                   LineChartBarData(
-                    spots: [
-                   FlSpot(0, 100),
-                      FlSpot(1, 1000),
-                      FlSpot(2, 3000),
-                      FlSpot(3, 500),
-                      FlSpot(4, 400),
-                      FlSpot(5, 2500),
-                      FlSpot(6,10000),
-                      FlSpot(7, 2909),
-                      FlSpot(8, 376),
-                      FlSpot(9, 290),
-                      FlSpot(10, 6666),
-                    ],
-                    isCurved: true,
-                    barWidth: 2,
-                    color: Colors.blue
-                  ),
+                      spots: [
+                        FlSpot(0, 100),
+                        FlSpot(1, 1000),
+                        FlSpot(2, 3000),
+                        FlSpot(3, 500),
+                        FlSpot(4, 400),
+                        FlSpot(5, 2500),
+                        FlSpot(6, 10000),
+                        FlSpot(7, 2909),
+                        FlSpot(8, 376),
+                        FlSpot(9, 290),
+                        FlSpot(10, 6666),
+                      ],
+                      isCurved: true,
+                      barWidth: 2,
+                      color: const Color.fromARGB(255, 255, 226, 107)),
                 ],
-               
-                
-               
               ),
             ),
           ),
@@ -67,20 +65,25 @@ class ProfilePage extends StatelessWidget {
                   .collection("userPosts")
                   .orderBy('createdAt', descending: true)
                   .snapshots(),
-              builder:
-                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return Center(child: CircularProgressIndicator());
                 }
                 return ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
-                    Map<String, dynamic>? data =
-                        snapshot.data!.docs[index].data() as Map<String, dynamic>?;
+                    Map<String, dynamic>? data = snapshot.data!.docs[index]
+                        .data() as Map<String, dynamic>?;
                     if (data == null || !data.containsKey('content')) {
                       return SizedBox.shrink();
                     }
                     return Container(
-                      color: Color.fromARGB(255, 146, 195, 235),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10.0, vertical: 3.0),
+                      //できれば％で指定したい
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0, vertical: 15.0),
+                      color: Color.fromARGB(255, 255, 255, 255),
                       child: Column(
                         children: [
                           Text(data['content']),

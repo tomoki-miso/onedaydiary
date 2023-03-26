@@ -42,6 +42,7 @@ class _SignInPageState extends State<SignInPage> {
                   });
                 },
               ),
+              SizedBox(height: 10, width: 50),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -67,6 +68,7 @@ class _SignInPageState extends State<SignInPage> {
                   }
                 },
               ),
+              SizedBox(height: 10, width: 50),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(

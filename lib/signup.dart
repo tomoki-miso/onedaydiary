@@ -55,6 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   });
                 },
               ),
+              SizedBox(height: 10, width: 50),
               ElevatedButton(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(

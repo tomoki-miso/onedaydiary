@@ -47,6 +47,10 @@ class _PostPageState extends State<PostPage> {
             SizedBox(
               width: 400,
               child: TextFormField(
+                //複数行テキストボックス
+                maxLines: null,
+                keyboardType: TextInputType.multiline,
+
                 controller: _textEditingController,
                 maxLength: 140,
                 decoration: const InputDecoration(

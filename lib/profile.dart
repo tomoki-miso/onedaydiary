@@ -27,101 +27,153 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-           Container(
-              child: StreamBuilder<DocumentSnapshot>(
-                // ここではDocumentSnapshotを使用して単一のドキュメントを取得する
-                // QuerySnapshotを使用する必要はありません
-                stream: FirebaseFirestore.instance
-                    .collection("userInformation")
-                    .doc(currentUser.uid)
-                    .snapshots(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<DocumentSnapshot> snapshot) {
-                  // ドキュメントのデータをMap<String, dynamic>に変換
-                  Map<String, dynamic>? data =
-                      snapshot.data?.data() as Map<String, dynamic>?;
-                  if (snapshot.connectionState == ConnectionState.waiting ||
-                      data == null) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  return Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.only(
-                        top: 20, left: 10, right: 10, bottom: 0),
-                    padding: EdgeInsets.all(10),
-                    width: double.infinity,
-                    color: Color.fromARGB(255, 255, 226, 107),
-                    child: Row(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(right: 10),
-                          width: 80,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black, width: 3),
+          Container(
+            child: StreamBuilder<DocumentSnapshot>(
+              // ここではDocumentSnapshotを使用して単一のドキュメントを取得する
+              // QuerySnapshotを使用する必要はありません
+              stream: FirebaseFirestore.instance
+                  .collection("userInformation")
+                  .doc(currentUser.uid)
+                  .snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<DocumentSnapshot> snapshot) {
+                // ドキュメントのデータをMap<String, dynamic>に変換
+                Map<String, dynamic>? data =
+                    snapshot.data?.data() as Map<String, dynamic>?;
+                if (snapshot.connectionState == ConnectionState.waiting ||
+                    data == null) {
+                  return Center(child: CircularProgressIndicator());
+                }
+                return Container(
+                  alignment: Alignment.center,
+                  margin:
+                      EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 0),
+                  padding: EdgeInsets.all(10),
+                  width: double.infinity,
+                  color: Color.fromARGB(255, 255, 226, 107),
+                  child: Row(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(right: 10),
+                        width: 80,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black, width: 3),
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                          ),
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              clipBehavior: Clip.hardEdge,
-                              child: Image.asset('assets/icon.png')),
+                            clipBehavior: Clip.hardEdge,
+                            child: Image.asset('assets/icon.png')),
+                      ),
+                      Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '名前',
+                                  ),
+                                ],
+                              ),
+                            ), //名前
+                            Container(
+                              padding: const EdgeInsets.only(left: 5, right: 5),
+                              color: Colors.white,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(data['name'],
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                ],
+                              ),
+                            ), //名前入力値
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '自己紹介',
+                                  ),
+                                ],
+                              ),
+                            ), //タブ
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              color: Colors.white,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(data['note'],
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      )),
+                                ],
+                              ),
+                            ), //自己紹介入力値
+                            /*Container(
+                              //padding: EdgeInsets.only(left: 5),
+                              color: Colors.white,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(data['name'],
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Text(
+                                    '自己紹介',
+                                  ),
+                                  /*Container (
+                                    height: 10,
+                                    width: ,
+                                    color: Color.fromARGB(255, 255, 226, 107),
+                                  ),*/
+                                  Text(data['note'],
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                      )),
+                                ],
+                              ),
+                            ),*/
+                            SizedBox(
+                              height: 5,
+                            ),
+                          ],
                         ),
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                color: Colors.white,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(data['name'],
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    Container(
-                                      height: 10,
-                                      color: Color.fromARGB(255, 255, 226, 107),
-                                    ),
-                                    Text(data['note'],
-                                        textAlign: TextAlign.left,
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor:
-                                      MaterialStateProperty.all(Colors.white),
-                                ),
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                      context, '/userInformation');
-                                },
-                                child: Text(
-                                  "ユーザー情報編集",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 40, 40, 40)),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-            SizedBox(
-              height: 10,
+          ),
+          SizedBox(height: 5),
+          ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.white),
             ),
+            onPressed: () {
+              Navigator.pushNamed(context, '/userInformation');
+            },
+            child: Text(
+              "ユーザー情報編集",
+              style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
           Container(
             height: 200,
             width: 400,

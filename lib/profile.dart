@@ -118,34 +118,6 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                             ), //自己紹介入力値
-                            /*Container(
-                              //padding: EdgeInsets.only(left: 5),
-                              color: Colors.white,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(data['name'],
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                  Text(
-                                    '自己紹介',
-                                  ),
-                                  /*Container (
-                                    height: 10,
-                                    width: ,
-                                    color: Color.fromARGB(255, 255, 226, 107),
-                                  ),*/
-                                  Text(data['note'],
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      )),
-                                ],
-                              ),
-                            ),*/
                             SizedBox(
                               height: 5,
                             ),

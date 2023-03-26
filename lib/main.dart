@@ -14,6 +14,7 @@ import 'signup.dart';
 import 'signin.dart';
 import 'demo.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'user_information.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         '/beforesignup': (context) => BeforeSignUpPage(),
         '/signup': (context) => SignUpPage(uid: 'example_uid'),
         '/signin': (context) => const SignInPage(),
+        '/userInformation': (context) => UserInformation(),
       },
     );
   }

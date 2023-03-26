@@ -20,16 +20,14 @@ class ProfilePage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 226, 107),
       appBar: AppBar(
-        title: Text("アカウントと記録",
+        backgroundColor: Color.fromARGB(255, 255, 226, 107),
+        title: Text("MYTL",
             style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
       ),
       body: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 15, bottom: 15),
-            color: Colors.white,
             height: 200,
             width: 400,
             child: LineChart(

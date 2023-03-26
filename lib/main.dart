@@ -25,7 +25,7 @@ void main() async {
   // 初回起動時のみデモページを開く
   SharedPreferences prefs = await SharedPreferences.getInstance();
   bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
-  Widget homeScreen = isFirstTime ? const DemoPage() : const MyStatefulWidget();
+  Widget homeScreen = isFirstTime ? const DemoPage() : const DemoPage();
   if (isFirstTime) {
     await prefs.setBool('isFirstTime', false);
   }

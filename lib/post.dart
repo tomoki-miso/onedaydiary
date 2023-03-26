@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:test_flutter/demo.dart';
 
 import 'before_signup.dart';
 
@@ -25,7 +26,7 @@ class _PostPageState extends State<PostPage> {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user == null) {
-      return BeforeSignUpPage();
+      return DemoPage();
     }
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 226, 107),

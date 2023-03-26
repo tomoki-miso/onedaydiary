@@ -20,14 +20,11 @@ class ProfilePage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 255, 226, 107),
-        title: Text("MYTL",
-            style: TextStyle(color: Color.fromARGB(255, 40, 40, 40))),
-      ),
+      backgroundColor: Color.fromARGB(255, 255, 226, 107),
       body: Column(
         children: [
           Container(
+            margin: EdgeInsets.only(top: 20),
             child: StreamBuilder<DocumentSnapshot>(
               // ここではDocumentSnapshotを使用して単一のドキュメントを取得する
               // QuerySnapshotを使用する必要はありません
@@ -50,20 +47,40 @@ class ProfilePage extends StatelessWidget {
                       EdgeInsets.only(top: 20, left: 10, right: 10, bottom: 0),
                   padding: EdgeInsets.all(10),
                   width: double.infinity,
-                  color: Color.fromARGB(255, 255, 226, 107),
+                  color: Colors.white,
                   child: Row(
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(right: 10),
-                        width: 80,
-                        decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 3),
-                          borderRadius: BorderRadius.circular(100),
+                      Center(
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(right: 10),
+                              width: 80,
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black, width: 3),
+                                borderRadius: BorderRadius.circular(100),
+                              ),
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  clipBehavior: Clip.hardEdge,
+                                  child: Image.asset('assets/icon.png')),
+                            ),
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.white),
+                              ),
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/userInformation');
+                              },
+                              child: Text(
+                                "編集",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 40, 40, 40)),
+                              ),
+                            ),
+                          ],
                         ),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            clipBehavior: Clip.hardEdge,
-                            child: Image.asset('assets/icon.png')),
                       ),
                       Flexible(
                         child: Column(
@@ -118,9 +135,6 @@ class ProfilePage extends StatelessWidget {
                                 ],
                               ),
                             ), //自己紹介入力値
-                            SizedBox(
-                              height: 5,
-                            ),
                           ],
                         ),
                       ),
@@ -131,26 +145,22 @@ class ProfilePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 5),
-          ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-            ),
-            onPressed: () {
-              Navigator.pushNamed(context, '/userInformation');
-            },
-            child: Text(
-              "ユーザー情報編集",
-              style: TextStyle(color: Color.fromARGB(255, 40, 40, 40)),
-            ),
-          ),
           SizedBox(
             height: 10,
           ),
           Container(
+            margin: EdgeInsets.all(10),
+            color: Colors.white,
             height: 200,
             width: 400,
             child: LineChart(
               LineChartData(
+                titlesData: FlTitlesData(
+                    topTitles: AxisTitles(
+                        axisNameWidget: Text(
+                  "歩数の記録",
+                  style: TextStyle(fontSize: 13),
+                ))),
                 lineTouchData: LineTouchData(enabled: false),
                 lineBarsData: [
                   LineChartBarData(
@@ -169,7 +179,7 @@ class ProfilePage extends StatelessWidget {
                       ],
                       isCurved: true,
                       barWidth: 2,
-                      color: const Color.fromARGB(255, 255, 226, 107)),
+                      color: Color.fromARGB(255, 255, 226, 107))
                 ],
               ),
             ),
